@@ -7,7 +7,7 @@
 * [Controllers](#controllers)
 
 ## General info
-This project is database for multiplayer roleplaying game with many players, items and enemies. This project currently doesn't have actual working game behind it, and is only a prototype database for possible game idea we had.
+This project is database for multiplayer roleplaying game with many players, items and enemies. This project currently doesn't have actual working game behind it, and is only a prototype database for possible game idea we had. In the game, you control your own player character. You defeat enemies, level up and collect items dropped by enemies. You can sell items in market districts in any city. 
 	
 ## Technologies
 Project is created with:
