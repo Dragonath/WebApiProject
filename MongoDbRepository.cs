@@ -49,10 +49,12 @@ public class MongoDbRepository : IRepository
         await _playerCollection.ReplaceOneAsync(filter, player);
         return player;
     }
-    public async Task<Player> DeletePlayer(Guid playerId)
+    public async Task<Player> BanPlayer(Guid playerId)
     {
-        FilterDefinition<Player> filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
-        return await _playerCollection.FindOneAndDeleteAsync(filter);
+        var filter = Builders<Player>.Filter.Eq(player => player.Id, playerId);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        player.IsBanned = true;
+        return null;
     }
     public async Task<Item> CreateItem(Guid playerId, Item item)
     {
@@ -143,13 +145,6 @@ public class MongoDbRepository : IRepository
         return null;
     }
 
-    public async Task<Player[]> Score(int minScore)
-    {
-        FilterDefinition<Player> filter = Builders<Player>.Filter.Gte("Score", minScore);
-        List<Player> players = await _playerCollection.Find(filter).ToListAsync();
-        return players.ToArray();
-    }
-
     public Task<Player> GetByName(string name)
     {
         var filter = Builders<Player>.Filter.Eq(player => player.Name, name);
@@ -175,13 +170,6 @@ public class MongoDbRepository : IRepository
         var filter = Builders<Player>.Filter.Eq(player => player.Name, name);
         await _playerCollection.FindOneAndUpdateAsync(filter, Builders<Player>.Update.Set(p => p.Name, name));
         return null;
-    }
-
-    public async Task<Player[]> GetAllPlayersByScore()
-    {
-        var sortDef = Builders<Player>.Sort.Descending("Score");
-        var players = await _playerCollection.Find(new BsonDocument()).Limit(10).Sort(sortDef).ToListAsync();
-        return players.ToArray();
     }
 
 }

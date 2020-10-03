@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("")]
+[Route("players")]
 public class PlayerController : ControllerBase
 {
     private readonly ILogger<PlayerController> _logger;
@@ -27,14 +27,13 @@ public class PlayerController : ControllerBase
 
     [HttpPost]
     [Route("Create")]
-    public async Task<Player> Create([FromBody] Player player)
+    public async Task<Player> Create([FromBody] string name)
     {
         DateTime cdate = DateTime.UtcNow;
         Player new_player = new Player();
-        new_player.Name = player.Name;
+        new_player.Name = name;
         new_player.Id = Guid.NewGuid();
-        new_player.Score = 0;
-        new_player.Level = 0;
+        new_player.Level = 1;
         new_player.IsBanned = false;
         new_player.CreationTime = cdate;
         new_player.Inventory = new List<Item>();
@@ -51,32 +50,26 @@ public class PlayerController : ControllerBase
     }
 
     [HttpPost]
-    [Route("Delete/{id:Guid}")]
-    public async Task<Player> Delete(Guid id)
+    [Route("{id:Guid}/Ban")]
+    public async Task<Player> Ban(Guid id)
     {
-        await _irepository.DeletePlayer(id);
+        await _irepository.BanPlayer(id);
         return null;
     }
 
     [HttpPost]
-    [Route("Get/{id:Guid}")]
+    [Route("{id:Guid}/Get")]
     public async Task<Player> Get(Guid id)
     {
         return await _irepository.GetPlayer(id);
     }
 
     [HttpPost]
-    [Route("Modify/{id:Guid}")]
+    [Route("{id:Guid}/Modify")]
     public async Task<Player> Modify([FromBody] Player player)
     {
         await _irepository.ModifyPlayer(player);
         return null;
-    }
-
-    [HttpPost]
-    [Route("Score/{minScore:int}")]
-    public async Task<Player[]> Score(int minScore){
-        return await _irepository.Score(minScore);
     }
 
     [HttpPost]
@@ -110,9 +103,4 @@ public class PlayerController : ControllerBase
         return await _irepository.UpdateName(name);
     }
 
-    [HttpPost]
-    [Route("Sorting")]
-    public async Task<Player[]> GetAllPlayersByScore(){
-        return await _irepository.GetAllPlayersByScore();
-    }
 }

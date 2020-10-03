@@ -18,7 +18,7 @@ public interface IRepository
     Task<Player> GetPlayer(Guid playerId);
     Task<Player[]> GetAllPlayers();
     Task<Player> ModifyPlayer(Player player);
-    Task<Player> DeletePlayer(Guid playerId);
+    Task<Player> BanPlayer(Guid playerId);
 
     Task<Item> CreateItem(Guid playerId, Item item);
     Task<Item> GetItem(Guid playerId, Guid itemId);
@@ -26,10 +26,8 @@ public interface IRepository
     Task<Item> ModifyItem(Guid playerId, Item item);
     Task<Item> DeleteItem(Guid playerId, Item item);
 
-    Task<Player[]> Score(int minScore);
     Task<Player> GetByName(string name);
     Task<Player[]> PlayerItemLevel(int level);
     Task<Player[]> ItemsSize(int size);
     Task<Player> UpdateName(string name);
-    Task<Player[]> GetAllPlayersByScore();
 }
