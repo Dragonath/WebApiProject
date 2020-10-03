@@ -22,3 +22,6 @@ $ cd ../lorem
 $ npm install
 $ npm start
 ```
+
+![GitHub Logo](/images/logo.png)
+Format: ![Alt Text](url)
