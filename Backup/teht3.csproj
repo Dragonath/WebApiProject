@@ -1,9 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk.Web" ToolsVersion="Current">
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <FileUpgradeFlags>40</FileUpgradeFlags>
-    <UpgradeBackupLocation>C:\Users\Aku\Documents\GitHub\WebApiProject\Backup\</UpgradeBackupLocation>
-    <OldToolsVersion>2.0</OldToolsVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MongoDb.Driver" Version="2.11.2" />
