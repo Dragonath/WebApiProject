@@ -46,6 +46,17 @@ Player class is the core of the project. Inventory is a list of Item class objec
 	Raises players level by one
 
 ### Enemies
+```
+public class Enemy
+{
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public int Level { get; set; }
+    public int Hp { get; set; }
+    public int Damage { get; set; }
+}
+```
+Enemy class is used to save enemy types. Single enemies do not have whole enemy classes for themselves in the database. Instead enemy in database is used to spawn multiple enemies with same attributes ingame.
 * #### Create([FromBody] NewEnemy enemy)
 	Takes NewEnemy from body and creates new enemy with name and level from NewEnemy and creates new unique Guid, Damage and Hp stat
 * #### GetAll()
