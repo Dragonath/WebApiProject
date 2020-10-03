@@ -17,7 +17,7 @@ Project is created with:
 * Postman
 
 ## Databases
-We decided to use 2 databases in our implementation; one for players and one for enemies. Player database is considerably larger, because Player class has an Inventory which is a List of Item class objects, such as armors, weapons and miscellaneous stuff. Enemy database is used to save enemy types so it can be easily accessed and used by multiple enemies. 
+We decided to use 2 databases in our implementation; one for players and one for enemies. Player database is considerably larger, because Player class has an Inventory which is a List of Item class objects, such as armors and weapons. Enemy database is used to save enemy types so it can be easily accessed and used by multiple enemies. 
 
 ** INSERT DRAW.IO KAAVIO **
 
