@@ -65,10 +65,18 @@ public class PlayerController : ControllerBase
     }
 
     [HttpPost]
-    [Route("{id:Guid}/Modify")]
+    [Route("{id:Guid}/Modify/LevelUp")]
     public async Task<Player> Modify([FromBody] Player player)
     {
         await _irepository.ModifyPlayer(player);
+        return null;
+    }
+
+    [HttpPost]
+    [Route("{id:Guid}/Modify/LevelUp")]
+    public async Task<Player> LevelUp(Guid id)
+    {
+        await _irepository.LevelUp(id);
         return null;
     }
 
@@ -95,12 +103,6 @@ public class PlayerController : ControllerBase
     [Route("Items/{size:int}")]
     public async Task<Player[]> ItemsSize(int size){
         return await _irepository.ItemsSize(size);
-    }
-
-    [HttpPost]
-    [Route("Update/{name:string}")]
-    public async Task<Player> UpdateName(string name){
-        return await _irepository.UpdateName(name);
     }
 
 }

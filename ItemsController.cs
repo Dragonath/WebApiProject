@@ -29,12 +29,12 @@ public class ItemsController : ControllerBase
 
     [HttpPost] // {"Level" : 50, "Type" : 2}}
     [Route("Create")]
-    public async Task<Item> Create(Guid playerId, [FromBody] Item item)
+    public async Task<Item> Create(Guid playerId, [FromBody] int level)
     {
         DateTime cdate = DateTime.UtcNow;
         Item new_item = new Item();
         new_item.Id = Guid.NewGuid();
-        new_item.Level = item.Level;
+        new_item.Level = level;
         new_item.CreationTime = cdate;
 
         await _irepository.CreateItem(playerId, new_item);
