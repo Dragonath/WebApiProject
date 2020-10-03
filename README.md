@@ -22,6 +22,18 @@ This project uses 3 different controllers to create, modify and delete data from
 * [Items](#items)
 
 ### Players
+```
+public class Player
+{   
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public int Level { get; set; }
+    public bool IsBanned { get; set; }
+    public DateTime CreationTime { get; set; }
+    public List<Item> Inventory = new List<Item>();
+}
+```
+Player class is the core of the project. Inventory is a list of Item class objects, Id is unique Guid, Name is name chosen by player, Level is players power and IsBanned boolean determines if player can play the game. 
 * #### Create([FromBody] NewPlayer newPlayer)
 	This function takes NewPlayer class from query body section and creates new level 1 player with unique guid and name from NewPlayer
 * #### GetAll()
@@ -29,7 +41,7 @@ This project uses 3 different controllers to create, modify and delete data from
 * #### Get(Guid id)
 	Finds and returns player with specific guid from database
 * #### Ban(Guid id)
-	Bans player, but doesnt remove it from database
+	Bans player, but doesn't remove it from the database
 * #### LevelUp(Guid id)
 	Raises players level by one
 
@@ -45,4 +57,4 @@ This project uses 3 different controllers to create, modify and delete data from
 
 ### Items
 
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+
