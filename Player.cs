@@ -16,10 +16,10 @@ public class Player
     public DateTime CreationTime { get; set; }
     public List<Item> Inventory = new List<Item>();
 
-    public Helm helm { get; set;}
-    public Chest chest { get; set; }
-    public Legs legs { get; set; }
-    public Boots boots { get; set; }
-    public Sword sword { get; set; }
-    public Shield shield { get; set; }
+    public Item helm { get; set;}
+    public Item chest { get; set; }
+    public Item legs { get; set; }
+    public Item boots { get; set; }
+    public Item sword { get; set; }
+    public Item shield { get; set; }
 }

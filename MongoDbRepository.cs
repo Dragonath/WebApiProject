@@ -66,7 +66,7 @@ public class MongoDbRepository : IRepository
         player.IsBanned = true;
         return null;
     }
-    public async Task<Item> CreateHelm(Guid playerId, Helm item)
+    public async Task<Item> CreateHelm(Guid playerId, Item item)
     {
         var filter = Builders<Player>.Filter.Eq(player => player.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
@@ -75,7 +75,7 @@ public class MongoDbRepository : IRepository
         return item;
     }   
 
-    public async Task<Item> CreateChest(Guid playerId, Chest item)
+    public async Task<Item> CreateChest(Guid playerId, Item item)
     {
         var filter = Builders<Player>.Filter.Eq(player => player.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
@@ -83,7 +83,7 @@ public class MongoDbRepository : IRepository
                 await _playerCollection.ReplaceOneAsync(filter, player);
         return item;
     }   
-    public async Task<Item> CreateLegs(Guid playerId, Legs item)
+    public async Task<Item> CreateLegs(Guid playerId, Item item)
     {
         var filter = Builders<Player>.Filter.Eq(player => player.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
@@ -91,7 +91,7 @@ public class MongoDbRepository : IRepository
         await _playerCollection.ReplaceOneAsync(filter, player);
         return item;
     }   
-    public async Task<Item> CreateBoots(Guid playerId, Boots item)
+    public async Task<Item> CreateBoots(Guid playerId, Item item)
     {
         var filter = Builders<Player>.Filter.Eq(player => player.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
@@ -99,7 +99,7 @@ public class MongoDbRepository : IRepository
         await _playerCollection.ReplaceOneAsync(filter, player);
         return item;
     }   
-    public async Task<Item> CreateSword(Guid playerId, Sword item)
+    public async Task<Item> CreateSword(Guid playerId, Item item)
     {
         var filter = Builders<Player>.Filter.Eq(player => player.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
@@ -107,7 +107,7 @@ public class MongoDbRepository : IRepository
         await _playerCollection.ReplaceOneAsync(filter, player);
         return item;
     }   
-    public async Task<Item> CreateShield(Guid playerId, Shield item)
+    public async Task<Item> CreateShield(Guid playerId, Item item)
     {
         var filter = Builders<Player>.Filter.Eq(player => player.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
@@ -205,150 +205,132 @@ public class MongoDbRepository : IRepository
         return players.ToArray();
     }
 
-    public async Task<Item> EquipHelm(Guid playerId, Helm item)
+    public async Task<Item> EquipHelm(Guid playerId, Item item)
     {
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
         if (player.helm != null)
         {
-            Helm oldHelm = player.helm;
+            Item oldItem = player.helm;
             player.helm = item;
-            player.Inventory.Add(oldHelm);
-            if (player.Inventory.Contains(item))
-            {
-                player.Inventory.Remove(item);
-            }
+            player.Inventory.Add(oldItem);
+
+            await _playerCollection.ReplaceOneAsync(filter, player);
+            await DeleteItem(playerId, item);
         }
         else
         {
             player.helm = item;
-            if (player.Inventory.Contains(item))
-            {
-                player.Inventory.Remove(item);
-            }
+            await _playerCollection.ReplaceOneAsync(filter, player);
+            await DeleteItem(playerId, item);
         }
-        return null;
+        return item;
     }
-    public async Task<Item> EquipChest(Guid playerId, Chest item)
+    public async Task<Item> EquipChest(Guid playerId, Item item)
     {
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
         if (player.chest != null)
         {
-            Chest oldChest = player.chest;
+            Item oldItem = player.chest;
             player.chest = item;
-            player.Inventory.Add(oldChest);
-            if (player.Inventory.Contains(item))
-            {
-                player.Inventory.Remove(item);
-            }
+            player.Inventory.Add(oldItem);
+
+            await _playerCollection.ReplaceOneAsync(filter, player);
+            await DeleteItem(playerId, item);
         }
         else
         {
             player.chest = item;
-            if (player.Inventory.Contains(item))
-            {
-                player.Inventory.Remove(item);
-            }
+            await _playerCollection.ReplaceOneAsync(filter, player);
+            await DeleteItem(playerId, item);
         }
-        return null;
+        return item;
     }
-    public async Task<Item> EquipLegs(Guid playerId, Legs item)
+    public async Task<Item> EquipLegs(Guid playerId, Item item)
     {
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
         if (player.legs != null)
         {
-            Legs oldLegs = player.legs;
+            Item oldItem = player.legs;
             player.legs = item;
-            player.Inventory.Add(oldLegs);
-            if (player.Inventory.Contains(item))
-            {
-                player.Inventory.Remove(item);
-            }
+            player.Inventory.Add(oldItem);
+
+            await _playerCollection.ReplaceOneAsync(filter, player);
+            await DeleteItem(playerId, item);
         }
         else
         {
             player.legs = item;
-            if (player.Inventory.Contains(item))
-            {
-                player.Inventory.Remove(item);
-            }
+            await _playerCollection.ReplaceOneAsync(filter, player);
+            await DeleteItem(playerId, item);
         }
-        return null;
+        return item;
     }
-    public async Task<Item> EquipBoots(Guid playerId, Boots item)
+    public async Task<Item> EquipBoots(Guid playerId, Item item)
     {
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
         if (player.boots != null)
         {
-            Boots oldBoots = player.boots;
+            Item oldBoots = player.boots;
             player.boots = item;
             player.Inventory.Add(oldBoots);
-            if (player.Inventory.Contains(item))
-            {
-                player.Inventory.Remove(item);
-            }
+
+            await _playerCollection.ReplaceOneAsync(filter, player);
+            await DeleteItem(playerId, item);
         }
         else
         {
             player.boots = item;
-            if (player.Inventory.Contains(item))
-            {
-                player.Inventory.Remove(item);
-            }
+            await _playerCollection.ReplaceOneAsync(filter, player);
+            await DeleteItem(playerId, item);
         }
-        return null;
+        return item;
     }
 
-    public async Task<Item> EquipSword(Guid playerId, Sword item)
+    public async Task<Item> EquipSword(Guid playerId, Item item)
     {
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
         if (player.sword != null)
         {
-            Sword oldSword = player.sword;
+            Item oldItem = player.sword;
             player.sword = item;
-            player.Inventory.Add(oldSword);
-            if (player.Inventory.Contains(item))
-            {
-                player.Inventory.Remove(item);
-            }
+            player.Inventory.Add(oldItem);
+
+            await _playerCollection.ReplaceOneAsync(filter, player);
+            await DeleteItem(playerId, item);
         }
         else
         {
             player.sword = item;
-            if (player.Inventory.Contains(item))
-            {
-                player.Inventory.Remove(item);
-            }
+            await _playerCollection.ReplaceOneAsync(filter, player);
+            await DeleteItem(playerId, item);
         }
-        return null;
+        return item;
     }
-    public async Task<Item> EquipShield(Guid playerId, Shield item)
+    public async Task<Item> EquipShield(Guid playerId, Item item)
     {
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
         if (player.shield != null)
         {
-            Shield oldShield = player.shield;
+            Item oldItem = player.shield;
             player.shield = item;
-            player.Inventory.Add(oldShield);
-            if (player.Inventory.Contains(item))
-            {
-                player.Inventory.Remove(item);
-            }
+            player.Inventory.Add(oldItem);
+
+            await _playerCollection.ReplaceOneAsync(filter, player);
+            await DeleteItem(playerId, item);
         }
         else
         {
             player.shield = item;
-            if (player.Inventory.Contains(item))
-            {
-                player.Inventory.Remove(item);
-            }
+            await _playerCollection.ReplaceOneAsync(filter, player);
+            await DeleteItem(playerId, item);
         }
-        return null;
+        return item;
     }
 
 
@@ -373,4 +355,8 @@ public class MongoDbRepository : IRepository
         return _enemyCollection.Find(filter).FirstAsync();
     }
 
+    public Task<Player> UpdateName(string name)
+    {
+        throw new NotImplementedException();
+    }
 }

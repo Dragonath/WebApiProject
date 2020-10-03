@@ -21,22 +21,22 @@ public interface IRepository
     Task<Player> LevelUp(Guid id);
     Task<Player> BanPlayer(Guid playerId);
 
-    Task<Item> CreateHelm(Guid playerId, Helm item);
-    Task<Item> CreateChest(Guid playerId, Chest item);
-    Task<Item> CreateLegs(Guid playerId, Legs item);
-    Task<Item> CreateBoots(Guid playerId, Boots item);
-    Task<Item> CreateSword(Guid playerId, Sword item);
-    Task<Item> CreateShield(Guid playerId, Shield item);
+    Task<Item> CreateHelm(Guid playerId, Item item);
+    Task<Item> CreateChest(Guid playerId, Item item);
+    Task<Item> CreateLegs(Guid playerId, Item item);
+    Task<Item> CreateBoots(Guid playerId, Item item);
+    Task<Item> CreateSword(Guid playerId, Item item);
+    Task<Item> CreateShield(Guid playerId, Item item);
     Task<Item> GetItem(Guid playerId, Guid itemId);
     Task<Item[]> GetAllItems(Guid playerId);
     Task<Item> ModifyItem(Guid playerId, Item item);
     Task<Item> DeleteItem(Guid playerId, Item item);
-    Task<Item> EquipHelm(Guid playerId, Helm item);
-    Task<Item> EquipChest(Guid playerId, Chest item);
-    Task<Item> EquipLegs(Guid playerId, Legs item);
-    Task<Item> EquipBoots(Guid playerId, Boots item);
-    Task<Item> EquipSword(Guid playerId, Sword item);
-    Task<Item> EquipShield(Guid playerId, Shield item);
+    Task<Item> EquipHelm(Guid playerId, Item item);
+    Task<Item> EquipChest(Guid playerId, Item item);
+    Task<Item> EquipLegs(Guid playerId, Item item);
+    Task<Item> EquipBoots(Guid playerId, Item item);
+    Task<Item> EquipSword(Guid playerId, Item item);
+    Task<Item> EquipShield(Guid playerId, Item item);
     Task<Player> GetByName(string name);
     Task<Player[]> PlayerItemLevel(int level);
     Task<Player[]> ItemsSize(int size);
@@ -45,3 +45,4 @@ public interface IRepository
     Task<Enemy> DeleteEnemy(Guid id);
     Task<Enemy> GetEnemy(Guid id);
     Task<Enemy[]> GetAllEnemies();
+}
