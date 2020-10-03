@@ -44,3 +44,4 @@ public interface IRepository
     Task<Enemy> DeleteEnemy(Guid id);
     Task<Enemy> GetEnemy(Guid id);
     Task<Enemy[]> GetAllEnemies();
+}
