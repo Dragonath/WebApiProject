@@ -59,15 +59,15 @@ public class MongoDbRepository : IRepository
 
         var filter = Builders<Player>.Filter.Eq(player => player.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
-        if (player.items != null)
+        if (player.Inventory != null)
         {
-            player.items.Add(item);
+            player.Inventory.Add(item);
         }
         else
         {
             List<Item> itemit = new List<Item>();
             itemit.Add(item);
-            player.items = itemit;
+            player.Inventory = itemit;
         }
         await _playerCollection.ReplaceOneAsync(filter, player);
         return null;
@@ -78,13 +78,13 @@ public class MongoDbRepository : IRepository
     {
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
-        if (player.items != null)
+        if (player.Inventory != null)
         {
-            for (int i = 0; i < player.items.Count; i++)
+            for (int i = 0; i < player.Inventory.Count; i++)
             {
-                if (player.items[i].Id == itemId)
+                if (player.Inventory[i].Id == itemId)
                 {
-                    return player.items[i];
+                    return player.Inventory[i];
                 }
             }
         }
@@ -97,9 +97,9 @@ public class MongoDbRepository : IRepository
     {
         var filter = Builders<Player>.Filter.Eq(player => player.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
-        if (player.items != null)
+        if (player.Inventory != null)
         {
-            return player.items.ToArray();
+            return player.Inventory.ToArray();
         }
         else
         {
@@ -111,13 +111,13 @@ public class MongoDbRepository : IRepository
     {
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
-        if (player.items != null)
+        if (player.Inventory != null)
         {
-            for (int i = 0; i < player.items.Count; i++)
+            for (int i = 0; i < player.Inventory.Count; i++)
             {
-                if (player.items[i].Id == item.Id)
+                if (player.Inventory[i].Id == item.Id)
                 {
-                    player.items[i] = item;
+                    player.Inventory[i] = item;
                 }
             }
             await _playerCollection.ReplaceOneAsync(filter, player);
@@ -129,13 +129,13 @@ public class MongoDbRepository : IRepository
     {
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
-        if (player.items != null)
+        if (player.Inventory != null)
         {
-            for (int i = 0; i < player.items.Count; i++)
+            for (int i = 0; i < player.Inventory.Count; i++)
             {
-                if (player.items[i].Id == item.Id)
+                if (player.Inventory[i].Id == item.Id)
                 {
-                    player.items.RemoveAt(i);
+                    player.Inventory.RemoveAt(i);
                 }
             }
             await _playerCollection.ReplaceOneAsync(filter, player);
@@ -158,14 +158,14 @@ public class MongoDbRepository : IRepository
 
     public async Task<Player[]> PlayerItemLevel(int level)
     {
-        var filter = Builders<Player>.Filter.ElemMatch<Item>(p => p.items, Builders<Item>.Filter.Eq(i => i.Level, level));
+        var filter = Builders<Player>.Filter.ElemMatch<Item>(p => p.Inventory, Builders<Item>.Filter.Eq(i => i.Level, level));
         List<Player> players = await _playerCollection.Find(filter).ToListAsync();
         return players.ToArray();
     }
 
     public async Task<Player[]> ItemsSize(int size)
     {
-        var filter = Builders<Player>.Filter.Eq(player => player.items.Count, size);
+        var filter = Builders<Player>.Filter.Eq(player => player.Inventory.Count, size);
         List<Player> players = await _playerCollection.Find(filter).ToListAsync();
         return players.ToArray();
     }

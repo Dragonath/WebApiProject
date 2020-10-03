@@ -37,7 +37,7 @@ public class PlayerController : ControllerBase
         new_player.Level = 0;
         new_player.IsBanned = false;
         new_player.CreationTime = cdate;
-        new_player.items = new List<Item>();
+        new_player.Inventory = new List<Item>();
         await _irepository.CreatePlayer(new_player);
         return null;
     }
