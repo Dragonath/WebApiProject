@@ -14,4 +14,12 @@ public class Player
     public bool IsBanned { get; set; }
     public DateTime CreationTime { get; set; }
     public List<Item> Inventory { get; set; }
+
+    // Player Equipment 
+    public Helm helm { get; set;}
+    public Chest chest { get; set; }
+    public Legs legs { get; set; }
+    public Boots boots { get; set; }
+    public Sword sword { get; set; }
+    public Shield shield { get; set; }
 }
