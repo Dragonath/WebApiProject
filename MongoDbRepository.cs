@@ -354,6 +354,18 @@ public class MongoDbRepository : IRepository
         var filter = Builders<Enemy>.Filter.Eq(e => e.Id, id);
         return _enemyCollection.Find(filter).FirstAsync();
     }
+    public async Task<Player> GetMoney(Guid id, int amount){
+        var filter = Builders<Player>.Filter.Eq(player => player.Id, id);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        player.Money += amount;
+        return null;
+    }
+    public async Task<Player> GetXp(Guid id, int amount){
+        var filter = Builders<Player>.Filter.Eq(player => player.Id, id);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        player.Xp += amount;
+        return null;
+    }
 
     public Task<Player> UpdateName(string name)
     {

@@ -44,3 +44,6 @@ public interface IRepository
     Task<Enemy> DeleteEnemy(Guid id);
     Task<Enemy> GetEnemy(Guid id);
     Task<Enemy[]> GetAllEnemies();
+    Task<Player> GetMoney(Guid id, int amount);
+    Task<Player> GetXp(Guid id, int amount);
+}
