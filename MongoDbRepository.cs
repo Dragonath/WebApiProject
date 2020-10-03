@@ -65,25 +65,55 @@ public class MongoDbRepository : IRepository
         player.IsBanned = true;
         return null;
     }
-    public async Task<Item> CreateItem(Guid playerId, Item item)
+    public async Task<Item> CreateHelm(Guid playerId, Helm item)
     {
-
         var filter = Builders<Player>.Filter.Eq(player => player.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
-        if (player.Inventory != null)
-        {
-            player.Inventory.Add(item);
-        }
-        else
-        {
-            List<Item> itemit = new List<Item>();
-            itemit.Add(item);
-            player.Inventory = itemit;
-        }
+        player.Inventory.Add(item);
         await _playerCollection.ReplaceOneAsync(filter, player);
-        return null;
+        return item;
+    }   
 
-    }
+    public async Task<Item> CreateChest(Guid playerId, Chest item)
+    {
+        var filter = Builders<Player>.Filter.Eq(player => player.Id, playerId);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        player.Inventory.Add(item);
+                await _playerCollection.ReplaceOneAsync(filter, player);
+        return item;
+    }   
+    public async Task<Item> CreateLegs(Guid playerId, Legs item)
+    {
+        var filter = Builders<Player>.Filter.Eq(player => player.Id, playerId);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        player.Inventory.Add(item);
+        await _playerCollection.ReplaceOneAsync(filter, player);
+        return item;
+    }   
+    public async Task<Item> CreateBoots(Guid playerId, Boots item)
+    {
+        var filter = Builders<Player>.Filter.Eq(player => player.Id, playerId);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        player.Inventory.Add(item);
+        await _playerCollection.ReplaceOneAsync(filter, player);
+        return item;
+    }   
+    public async Task<Item> CreateSword(Guid playerId, Sword item)
+    {
+        var filter = Builders<Player>.Filter.Eq(player => player.Id, playerId);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        player.Inventory.Add(item);
+        await _playerCollection.ReplaceOneAsync(filter, player);
+        return item;
+    }   
+    public async Task<Item> CreateShield(Guid playerId, Shield item)
+    {
+        var filter = Builders<Player>.Filter.Eq(player => player.Id, playerId);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        player.Inventory.Add(item);
+        await _playerCollection.ReplaceOneAsync(filter, player);
+        return item;
+    }   
 
     public async Task<Item> GetItem(Guid playerId, Guid itemId)
     {

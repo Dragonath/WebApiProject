@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Aku\\Documents\\GitHub\\WebApiProject\\teht3.csproj": {}
+    "c:\\Users\\Aku\\Documents\\GitHub\\WebApiProject\\Backup\\teht3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Aku\\Documents\\GitHub\\WebApiProject\\teht3.csproj": {
+    "c:\\Users\\Aku\\Documents\\GitHub\\WebApiProject\\Backup\\teht3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Aku\\Documents\\GitHub\\WebApiProject\\teht3.csproj",
+        "projectUniqueName": "c:\\Users\\Aku\\Documents\\GitHub\\WebApiProject\\Backup\\teht3.csproj",
         "projectName": "teht3",
-        "projectPath": "C:\\Users\\Aku\\Documents\\GitHub\\WebApiProject\\teht3.csproj",
+        "projectPath": "c:\\Users\\Aku\\Documents\\GitHub\\WebApiProject\\Backup\\teht3.csproj",
         "packagesPath": "C:\\Users\\Aku\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Aku\\Documents\\GitHub\\WebApiProject\\obj\\",
+        "outputPath": "c:\\Users\\Aku\\Documents\\GitHub\\WebApiProject\\Backup\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Aku\\AppData\\Roaming\\NuGet\\NuGet.Config"

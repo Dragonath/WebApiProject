@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "grosZ/r3bR4sn86+XbJF8UIKlQ5dX5trkaBo+WKUNslx71iIST8nxu2lRfVjuuYYjZl9C9R4MgUwlHu3NdPj0Q==",
+  "dgSpecHash": "hYoSFpgAMIg59beH6+eQ+gO9S1B18TkHYn0Xim9ORKUSO9Z8hxmDoKL88uhuPyYaU4ORBA+XiC1kwPNll4wCTw==",
   "success": true,
-  "projectFilePath": "c:\\Users\\Aku\\Documents\\GitHub\\WebApiProject\\teht3.csproj",
+  "projectFilePath": "C:\\Users\\Aku\\Documents\\GitHub\\WebApiProject\\teht3.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Aku\\.nuget\\packages\\dnsclient\\1.3.1\\dnsclient.1.3.1.nupkg.sha512",
     "C:\\Users\\Aku\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",

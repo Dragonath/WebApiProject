@@ -27,11 +27,11 @@ public class PlayerController : ControllerBase
 
     [HttpPost]
     [Route("Create")]
-    public async Task<Player> Create([FromBody] string name)
+    public async Task<Player> Create([FromBody] NewPlayer newPlayer)
     {
         DateTime cdate = DateTime.UtcNow;
         Player new_player = new Player();
-        new_player.Name = name;
+        new_player.Name = newPlayer.name;
         new_player.Id = Guid.NewGuid();
         new_player.Level = 1;
         new_player.IsBanned = false;
@@ -79,12 +79,12 @@ public class PlayerController : ControllerBase
         await _irepository.LevelUp(id);
         return null;
     }
-
+/* 
     [HttpPost]
     [Route("{name:string}")]
     public async Task<Player> GetByName(string name){
         return await _irepository.GetByName(name);
-    }
+    } */
 
     [HttpPost]
     [Route("{id:Guid}")]

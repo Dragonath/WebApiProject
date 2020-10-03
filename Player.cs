@@ -7,15 +7,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 public class Player
-{
+{   
+    
     public Guid Id { get; set; }
     public string Name { get; set; }
     public int Level { get; set; }
     public bool IsBanned { get; set; }
     public DateTime CreationTime { get; set; }
-    public List<Item> Inventory { get; set; }
+    public List<Item> Inventory = new List<Item>();
 
-    // Player Equipment 
     public Helm helm { get; set;}
     public Chest chest { get; set; }
     public Legs legs { get; set; }

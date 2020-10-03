@@ -29,16 +29,63 @@ public class ItemsController : ControllerBase
 
     [HttpPost] // {"Level" : 50, "Type" : 2}}
     [Route("Create")]
-    public async Task<Item> Create(Guid playerId, [FromBody] int level)
-    {
-        DateTime cdate = DateTime.UtcNow;
-        Item new_item = new Item();
-        new_item.Id = Guid.NewGuid();
-        new_item.Level = level;
-        new_item.CreationTime = cdate;
+    public async Task<Item> CreateItem(Guid playerId, [FromBody] NewItem newItem)
+    {   
 
-        await _irepository.CreateItem(playerId, new_item);
+        if(newItem.type.Equals("Helm")){
+            Helm new_helm = new Helm();  
+            new_helm.Id = Guid.NewGuid();
+            new_helm.Level = newItem.level;
+            new_helm.armor = new_helm.Level * 4;
+            new_helm.CreationTime = DateTime.UtcNow;
+            return await _irepository.CreateHelm(playerId, new_helm);
+        }
+        if(newItem.type.Equals("Chest")) {
+            Chest new_chest = new Chest();
+            new_chest.Id = Guid.NewGuid();
+            new_chest.Level = newItem.level;
+            new_chest.armor = new_chest.Level * 8;
+            new_chest.CreationTime = DateTime.UtcNow;
+            return await _irepository.CreateChest(playerId, new_chest);
+        }
+        if(newItem.type.Equals("Legs")) {
+            Legs new_legs = new Legs();
+            new_legs.Id = Guid.NewGuid();
+            new_legs.Level = newItem.level;
+            new_legs.armor = new_legs.Level * 6;
+            new_legs.CreationTime = DateTime.UtcNow;
+            return await _irepository.CreateLegs(playerId, new_legs);
+        }
+        if(newItem.type.Equals("Boots")) {
+            Boots new_boots = new Boots();
+            new_boots.Id = Guid.NewGuid();
+            new_boots.Level = newItem.level;
+            new_boots.armor = new_boots.Level * 3;
+            new_boots.CreationTime = DateTime.UtcNow;
+            return await _irepository.CreateBoots(playerId, new_boots);
+        }
+        if(newItem.type.Equals("Sword")) {
+            Sword new_sword = new Sword();
+            new_sword.Id = Guid.NewGuid();
+            new_sword.Level = newItem.level;
+            new_sword.damage = new_sword.Level * 13;
+            new_sword.CreationTime = DateTime.UtcNow;
+            return await _irepository.CreateSword(playerId, new_sword);
+        }
+        if(newItem.type.Equals("Shield")) {
+            Shield new_shield = new Shield();
+            new_shield.Id = Guid.NewGuid();
+            new_shield.Level = newItem.level;
+            new_shield.armor = new_shield.Level * 11;
+            new_shield.CreationTime = DateTime.UtcNow;
+            return await _irepository.CreateShield(playerId, new_shield);
+        }
         return null;
+
+        
+
+
+        
     }
 
     [HttpPost]
@@ -72,6 +119,43 @@ public class ItemsController : ControllerBase
     {
         await _irepository.ModifyItem(playerId, item);
         return null;
+    }
+    [HttpPost]
+    [Route("Helm/Equip")]
+    public async Task<Item> EquipHelm(Guid playerId, [FromBody] Helm item)
+     {
+        return await _irepository.EquipHelm(playerId, item);
+    }
+    [HttpPost]
+    [Route("Chest/Equip")]
+    public async Task<Item> EquipChest(Guid playerId, [FromBody] Chest item)
+     {
+        return await _irepository.EquipChest(playerId, item);
+    }
+
+    [HttpPost]
+    [Route("Legs/Equip")]
+    public async Task<Item> EquipLegs(Guid playerId, [FromBody] Legs item)
+    {
+        return await _irepository.EquipLegs(playerId, item);
+    }
+    [HttpPost]
+    [Route("Boots/Equip")]
+    public async Task<Item> EquipBoots(Guid playerId, [FromBody] Boots item)
+    {
+        return await _irepository.EquipBoots(playerId, item);
+    }
+    [HttpPost]
+    [Route("Sword/Equip")]
+    public async Task<Item> EquipSword(Guid playerId, [FromBody] Sword item)
+    {
+        return await _irepository.EquipSword(playerId, item);
+    }
+        [HttpPost]
+    [Route("Shield/Equip")]
+    public async Task<Item> EquipShield(Guid playerId, [FromBody] Shield item)
+    {
+        return await _irepository.EquipShield(playerId, item);
     }
 
 }
