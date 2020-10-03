@@ -29,3 +29,10 @@ F:\teht\GameWebApi\bin\Debug\netcoreapp3.1\SharpCompress.dll
 F:\teht\GameWebApi\bin\Debug\netcoreapp3.1\runtimes\win\native\libzstd.dll
 F:\teht\GameWebApi\bin\Debug\netcoreapp3.1\runtimes\win\native\snappy32.dll
 F:\teht\GameWebApi\bin\Debug\netcoreapp3.1\runtimes\win\native\snappy64.dll
+C:\Users\Aku\Documents\GitHub\WebApiProject\obj\Debug\netcoreapp3.1\teht3.csprojAssemblyReference.cache
+C:\Users\Aku\Documents\GitHub\WebApiProject\obj\Debug\netcoreapp3.1\teht3.AssemblyInfoInputs.cache
+C:\Users\Aku\Documents\GitHub\WebApiProject\obj\Debug\netcoreapp3.1\teht3.AssemblyInfo.cs
+C:\Users\Aku\Documents\GitHub\WebApiProject\obj\Debug\netcoreapp3.1\teht3.csproj.CoreCompileInputs.cache
+C:\Users\Aku\Documents\GitHub\WebApiProject\obj\Debug\netcoreapp3.1\teht3.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Aku\Documents\GitHub\WebApiProject\obj\Debug\netcoreapp3.1\teht3.dll
+C:\Users\Aku\Documents\GitHub\WebApiProject\obj\Debug\netcoreapp3.1\teht3.pdb

@@ -172,4 +172,146 @@ public class MongoDbRepository : IRepository
         return null;
     }
 
+    public async Task<Item> EquipHelm(Guid playerId, Item item) 
+    {
+        if(item != Helm) {
+            Console.WriteLine("Item is not a helm");
+            return null;
+        }
+        
+        var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        if(player.helm != null) {
+            Helm oldHelm = player.helm;
+            player.helm = item;
+            player.Inventory.Add(oldHelm);
+            if(player.Inventory.Contains(item)) {
+                player.Inventory.Remove(item);
+            }
+        } else {
+            player.helm = item;
+            if(player.Inventory.Contains(item)){
+                player.Inventory.Remove(item);
+            }
+        }
+        
+    }
+    public async Task<Item> EquipChest(Guid playerId, Item item) 
+    {
+        if(item != Chest) {
+            Console.WriteLine("Item is not a chest");
+            return null;
+        }
+        
+        var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        if(player.chest != null) {
+            Helm oldChest = player.chest;
+            player.chest = item;
+            player.Inventory.Add(oldChest);
+            if(player.Inventory.Contains(item)) {
+                player.Inventory.Remove(item);
+            }
+        } else {
+            player.chest = item;
+            if(player.Inventory.Contains(item)){
+                player.Inventory.Remove(item);
+            }
+        }
+        
+    }
+    public async Task<Item> EquipLegs(Guid playerId, Item item) 
+    {
+        if(item != Legs) {
+            Console.WriteLine("Item is not a Legs");
+            return null;
+        }
+        
+        var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        if(player.legs != null) {
+            Helm oldLegs = player.legs;
+            player.legs = item;
+            player.Inventory.Add(oldLegs);
+            if(player.Inventory.Contains(item)) {
+                player.Inventory.Remove(item);
+            }
+        } else {
+            player.legs = item;
+            if(player.Inventory.Contains(item)){
+                player.Inventory.Remove(item);
+            }
+        }   
+    }
+        public async Task<Item> EquipBoots(Guid playerId, Item item) 
+    {
+        if(item != Boots) {
+            Console.WriteLine("Item is not a Boots");
+            return null;
+        }
+        
+        var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        if(player.boots != null) {
+            Helm oldBoots = player.boots;
+            player.boots = item;
+            player.Inventory.Add(oldBoots);
+            if(player.Inventory.Contains(item)) {
+                player.Inventory.Remove(item);
+            }
+        } else {
+            player.boots = item;
+            if(player.Inventory.Contains(item)){
+                player.Inventory.Remove(item);
+            }
+        }   
+    }
+    
+    public async Task<Item> EquipSword(Guid playerId, Item item) 
+    {
+        if(item != Sword) {
+            Console.WriteLine("Item is not a sword");
+            return null;
+        }
+        
+        var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        if(player.sword != null) {
+            Helm oldSword = player.sword;
+            player.sword = item;
+            player.Inventory.Add(oldSword);
+            if(player.Inventory.Contains(item)) {
+                player.Inventory.Remove(item);
+            }
+        } else {
+            player.sword = item;
+            if(player.Inventory.Contains(item)){
+                player.Inventory.Remove(item);
+            }
+        }
+        }
+    public async Task<Item> EquipShield(Guid playerId, Item item) 
+    {
+        if(item != Shield) {
+            Console.WriteLine("Item is not a shield");
+            return null;
+        }
+        
+        var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        if(player.shield != null) {
+            Helm oldShield = player.shield;
+            player.shield = item;
+            player.Inventory.Add(oldShield);
+            if(player.Inventory.Contains(item)) {
+                player.Inventory.Remove(item);
+            }
+        } else {
+            player.shield = item;
+            if(player.Inventory.Contains(item)){
+                player.Inventory.Remove(item);
+            }
+        } 
+    }
+
 }

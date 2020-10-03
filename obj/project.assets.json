@@ -4760,30 +4760,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dragonath\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Aku\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\teht\\GameWebApi\\teht3.csproj",
+      "projectUniqueName": "C:\\Users\\Aku\\Documents\\GitHub\\WebApiProject\\teht3.csproj",
       "projectName": "teht3",
-      "projectPath": "F:\\teht\\GameWebApi\\teht3.csproj",
-      "packagesPath": "C:\\Users\\Dragonath\\.nuget\\packages\\",
-      "outputPath": "F:\\teht\\GameWebApi\\obj\\",
+      "projectPath": "C:\\Users\\Aku\\Documents\\GitHub\\WebApiProject\\teht3.csproj",
+      "packagesPath": "C:\\Users\\Aku\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Aku\\Documents\\GitHub\\WebApiProject\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Dragonath\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Aku\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
