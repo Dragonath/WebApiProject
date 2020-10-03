@@ -22,9 +22,8 @@ This project uses 3 different controllers to create, modify and delete data from
 * [Enemies](#enemies)
 
 ### Players
-#### Create([FromBody] NewEnemy enemy)
-This function takes  creates new player with unique guid
-
+#### Create([FromBody] NewPlayer newPlayer)
+This function takes NewPlayer class from query body section and creates new level 1 player with unique guid and name from NewPlayer
 ### Items
 
 
