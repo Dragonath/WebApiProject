@@ -3,9 +3,7 @@
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
-* [Players](#players)
-* [Items](#items)
-* [Enemies](#enemies)
+* [Controllers](#controllers)
 
 ## General info
 This project is database for multiplayer roleplaying game with many players, items and enemies. This project currently doesn't have actual working game behind it, and is only a prototype database for possible game idea we had.
@@ -13,20 +11,24 @@ This project is database for multiplayer roleplaying game with many players, ite
 ## Technologies
 Project is created with:
 * Visual Studio Code
+* Dot.NET WebAPI
 * MongoDB
 * Postman
 
-## Players
+## Controllers
+This project uses 3 different controllers to create, modify and delete data from database. Each controller can do multiple things.
+* [Players](#players)
+* [Items](#items)
+* [Enemies](#enemies)
 
-## Items
+### Players
+#### Create([FromBody] NewEnemy enemy)
+This function takes  creates new player with unique guid
 
-## Enemies
-To run this project, install it locally using npm:
+### Items
 
-```
-$ cd ../lorem
-$ npm install
-$ npm start
-```
+
+### Enemies
+
 
 ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
