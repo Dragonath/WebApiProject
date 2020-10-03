@@ -1,4 +1,4 @@
-### MongoDB Game Project
+# MongoDB Game Project
 
 ## Table of contents
 * [General info](#general-info)
