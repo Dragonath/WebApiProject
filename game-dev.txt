@@ -1,0 +1,1 @@
+{"list_players":[{"Id":"04aa0fb2-3cb6-4228-a3c7-469f63bc44f6","Name":"Antti","Score":0,"Level":0,"IsBanned":false,"CreationTime":"2020-09-22T11:28:51.1296434Z"},{"Id":"b4411e7f-f461-46b5-bbd3-3106f3cc00e7","Name":"Mikko","Score":0,"Level":0,"IsBanned":false,"CreationTime":"2020-09-22T11:32:55.2018853Z"}]}
