@@ -3,6 +3,7 @@
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
+* [Databases](#databases)
 * [Controllers](#controllers)
 
 ## General info
@@ -14,6 +15,11 @@ Project is created with:
 * Dot.NET WebAPI
 * MongoDB
 * Postman
+
+## Databases
+We decided to use 2 databases in our implementation; one for players and one for enemies. Player database is considerably larger, because Player class has an Inventory which is a List of Item class objects, such as armors, weapons and miscellaneous stuff. Enemy database is used to save enemy types so it can be easily accessed and used by multiple enemies. 
+
+** INSERT DRAW.IO KAAVIO **
 
 ## Controllers
 This project uses 3 different controllers to create, modify and delete data from database. Each controller can do multiple things.
