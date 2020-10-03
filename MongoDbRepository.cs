@@ -49,6 +49,15 @@ public class MongoDbRepository : IRepository
         await _playerCollection.ReplaceOneAsync(filter, player);
         return player;
     }
+
+    public async Task<Player> LevelUp(Guid id)
+    {
+        var filter = Builders<Player>.Filter.Eq(player => player.Id, id);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        player.Level += 1;
+        return null;
+    }
+
     public async Task<Player> BanPlayer(Guid playerId)
     {
         var filter = Builders<Player>.Filter.Eq(player => player.Id, playerId);
@@ -313,5 +322,4 @@ public class MongoDbRepository : IRepository
             }
         } 
     }
-
 }

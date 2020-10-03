@@ -18,6 +18,7 @@ public interface IRepository
     Task<Player> GetPlayer(Guid playerId);
     Task<Player[]> GetAllPlayers();
     Task<Player> ModifyPlayer(Player player);
+    Task<Player> LevelUp(Guid id);
     Task<Player> BanPlayer(Guid playerId);
 
     Task<Item> CreateItem(Guid playerId, Item item);
