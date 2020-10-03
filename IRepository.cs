@@ -40,8 +40,8 @@ public interface IRepository
     Task<Player> GetByName(string name);
     Task<Player[]> PlayerItemLevel(int level);
     Task<Player[]> ItemsSize(int size);
-    Task<Player> UpdateName(string name);
     Task<Enemy> CreateEnemy(Enemy newenemy);
     Task<Enemy> DeleteEnemy(Guid id);
     Task<Enemy> GetEnemy(Guid id);
     Task<Enemy[]> GetAllEnemies();
+}
