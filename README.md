@@ -7,7 +7,7 @@
 * [Controllers](#controllers)
 
 ## General info
-This project is database for multiplayer roleplaying game with many players, items and enemies. This project currently doesn't have actual working game behind it, and is only a prototype database for possible game idea we had.
+This project is database for multiplayer roleplaying game with many players, items and enemies. This project currently doesn't have actual working game behind it, and is only a prototype database for possible game idea we had. In the game, you control your own player character. You defeat enemies, level up and collect items dropped by enemies. You can sell items in market districts in any city. 
 	
 ## Technologies
 Project is created with:
@@ -17,7 +17,7 @@ Project is created with:
 * Postman
 
 ## Databases
-We decided to use 2 databases in our implementation; one for players and one for enemies. Player database is considerably larger, because Player class has an Inventory which is a List of Item class objects, such as armors, weapons and miscellaneous stuff. Enemy database is used to save enemy types so it can be easily accessed and used by multiple enemies. 
+We decided to use 2 databases in our implementation; one for players and one for enemies. Player database is considerably larger, because Player class has an Inventory which is a List of Item class objects, such as armors and weapons. Enemy database is used to save enemy types so it can be easily accessed and used by multiple enemies. 
 
 ** INSERT DRAW.IO KAAVIO **
 

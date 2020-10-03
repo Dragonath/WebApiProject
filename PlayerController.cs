@@ -34,6 +34,8 @@ public class PlayerController : ControllerBase
         new_player.Name = newPlayer.name;
         new_player.Id = Guid.NewGuid();
         new_player.Level = 1;
+        new_player.Xp = 0;
+        new_player.Money = 0;
         new_player.IsBanned = false;
         new_player.CreationTime = cdate;
         new_player.Inventory = new List<Item>();
@@ -79,12 +81,28 @@ public class PlayerController : ControllerBase
         await _irepository.LevelUp(id);
         return null;
     }
+
+    [HttpPost]
+    [Route("{id:Guid}/Modify/Money/{amount:int}")]
+    public async Task<Player> GetMoney(Guid id, int amount)
+    {
+        await _irepository.GetMoney(id,amount);
+        return null;
+    }
+
+    [HttpPost]
+    [Route("{id:Guid}/Modify/Xp/{amount:int}")]
+    public async Task<Player> GetXp(Guid id, int amount)
+    {
+        await _irepository.GetXp(id,amount);
+        return null;
+    }
 /* 
     [HttpPost]
     [Route("{name:string}")]
     public async Task<Player> GetByName(string name){
         return await _irepository.GetByName(name);
-    } */
+    } 
 
     [HttpPost]
     [Route("{id:Guid}")]
@@ -104,5 +122,5 @@ public class PlayerController : ControllerBase
     public async Task<Player[]> ItemsSize(int size){
         return await _irepository.ItemsSize(size);
     }
-
+*/
 }
