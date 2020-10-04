@@ -43,7 +43,6 @@ public static class CustomErrorHandlerHelper{
             };
 
             if(ex is NotFoundException) problem.Status = 404;
-            else if(ex is UnauthorizedAccessException) problem.Status = 401;
             else if(ex is WrongItemTypeException) problem.Status = 400;
             
             var traceId = Activity.Current?.Id ?? httpContext?.TraceIdentifier;

@@ -403,6 +403,11 @@ public class MongoDbRepository : IRepository
     {
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
+        
+        if(player.helm == null) {
+            return null;
+        }
+
         Item item = player.helm;
         player.Inventory.Add(item);
         player.helm = null;
@@ -414,6 +419,11 @@ public class MongoDbRepository : IRepository
     {
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
+        
+        if(player.chest == null) {
+            return null;
+        } 
+
         Item item = player.chest;
         player.Inventory.Add(item);
         player.chest = null;
@@ -425,6 +435,11 @@ public class MongoDbRepository : IRepository
     {
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
+                
+        if(player.chest == null) {
+            return null;
+        } 
+       
         Item item = player.legs;
         player.Inventory.Add(item);
         player.legs = null;
@@ -436,6 +451,11 @@ public class MongoDbRepository : IRepository
     {
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
+                
+        if(player.chest == null) {
+            return null;
+        } 
+
         Item item = player.boots;
         player.Inventory.Add(item);
         player.boots = null;
@@ -447,6 +467,11 @@ public class MongoDbRepository : IRepository
     {
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
+        
+        if(player.chest == null) {
+            return null;
+        }   
+
         Item item = player.sword;
         player.Inventory.Add(item);
         player.sword = null;
@@ -458,6 +483,11 @@ public class MongoDbRepository : IRepository
     {
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
+        
+        if(player.chest == null) {
+            return null;
+        } 
+        
         Item item = player.shield;
         player.Inventory.Add(item);
         player.shield = null;
