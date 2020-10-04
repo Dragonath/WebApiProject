@@ -34,14 +34,41 @@ public class Player
     public Guid Id { get; set; }
     public string Name { get; set; }
     public int Level { get; set; }
+    public int Xp { get; set; }
+    public int Money { get; set; }
     public bool IsBanned { get; set; }
     public DateTime CreationTime { get; set; }
     public List<Item> Inventory = new List<Item>();
+    public Item helm { get; set;}
+    public Item chest { get; set; }
+    public Item legs { get; set; }
+    public Item boots { get; set; }
+    public Item sword { get; set; }
+    public Item shield { get; set; }
 }
 ```
-Player class is the core of the project. Inventory is a list of Item class objects, Id is unique Guid, Name is name chosen by player, Level is players power and IsBanned boolean determines if player can play the game. 
+Player class is the core of the project. Inventory is a list of Item class objects, Id is unique Guid, Name is name chosen by player, Level is players power and IsBanned boolean determines if player can play the game. Player also has total experience and money. Equipping items is handled by Item type variables helm, chest, legs, boots, sword and shield. 
 * #### Create([FromBody] NewPlayer newPlayer)
 	This function takes NewPlayer class from query body section and creates new level 1 player with unique guid and name from NewPlayer
+	```	
+	[HttpPost]
+	[Route("Create")]
+	public async Task<Player> Create([FromBody] NewPlayer newPlayer)
+	{
+	    DateTime cdate = DateTime.UtcNow;
+	    Player new_player = new Player();
+	    new_player.Name = newPlayer.name;
+	    new_player.Id = Guid.NewGuid();
+	    new_player.Level = 1;
+	    new_player.Xp = 0;
+	    new_player.Money = 0;
+	    new_player.IsBanned = false;
+	    new_player.CreationTime = cdate;
+	    new_player.Inventory = new List<Item>();
+	    await _irepository.CreatePlayer(new_player);
+	    return null;
+	}
+	```
 * #### GetAll()
 	Returns all players saved in database
 * #### Get(Guid id)
