@@ -228,4 +228,29 @@ public enum itemType
 	* EquipBoots(Guid playerId, [FromBody] Item item)
 	* EquipSword(Guid playerId, [FromBody] Item item)
 	* EquipShield(Guid playerId, [FromBody] Item item)
+	```
+	public async Task<Item> EquipShield(Guid playerId, Item item)
+	{
+	    if(item.itemType != itemType.Shield) {
+		throw new WrongItemTypeException(System.Net.HttpStatusCode.NotAcceptable, "That item is not a shield");           
+	    }
+	    var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
+	    Player player = await _playerCollection.Find(filter).FirstAsync();
+	    if (player.shield != null)
+	    {
+		Item oldItem = player.shield;
+		player.shield = item;
+		player.Inventory.Add(oldItem);
+		await _playerCollection.ReplaceOneAsync(filter, player);
+		await DeleteItem(playerId, item);
+	    }
+	    else
+	    {
+		player.shield = item;
+		await _playerCollection.ReplaceOneAsync(filter, player);
+		await DeleteItem(playerId, item);
+	    }
+	    return item;
+	}
+	```
 
