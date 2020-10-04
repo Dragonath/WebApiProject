@@ -222,35 +222,36 @@ public enum itemType
 	
 * ### Equip	
 	Following functions work similarly to each other. They equip specific item from players inventory to that specific matching equipment slot.
-	* EquipHelm(Guid playerId, [FromBody] Item item)
-	* EquipChest(Guid playerId, [FromBody] Item item)
-	* EquipLegs(Guid playerId, [FromBody] Item item)
-	* EquipBoots(Guid playerId, [FromBody] Item item)
-	* EquipSword(Guid playerId, [FromBody] Item item)
-	* EquipShield(Guid playerId, [FromBody] Item item)
 	```
-	public async Task<Item> EquipShield(Guid playerId, Item item)
+	public async Task<Item> EquipHelm(Guid playerId, Item item)
 	{
-	    if(item.itemType != itemType.Shield) {
-		throw new WrongItemTypeException(System.Net.HttpStatusCode.NotAcceptable, "That item is not a shield");           
+	    if(item.itemType != itemType.Helm) 
+	    {
+		throw new WrongItemTypeException(System.Net.HttpStatusCode.NotAcceptable, "That item is not a helm");
 	    }
 	    var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
 	    Player player = await _playerCollection.Find(filter).FirstAsync();
-	    if (player.shield != null)
+	    if (player.helm != null)
 	    {
-		Item oldItem = player.shield;
-		player.shield = item;
+		Item oldItem = player.helm;
+		player.helm = item;
 		player.Inventory.Add(oldItem);
 		await _playerCollection.ReplaceOneAsync(filter, player);
 		await DeleteItem(playerId, item);
 	    }
 	    else
 	    {
-		player.shield = item;
+		player.helm = item;
 		await _playerCollection.ReplaceOneAsync(filter, player);
 		await DeleteItem(playerId, item);
 	    }
 	    return item;
 	}
 	```
+	* EquipHelm(Guid playerId, [FromBody] Item item)
+	* EquipChest(Guid playerId, [FromBody] Item item)
+	* EquipLegs(Guid playerId, [FromBody] Item item)
+	* EquipBoots(Guid playerId, [FromBody] Item item)
+	* EquipSword(Guid playerId, [FromBody] Item item)
+	* EquipShield(Guid playerId, [FromBody] Item item)
 
