@@ -37,6 +37,13 @@ public interface IRepository
     Task<Item> EquipBoots(Guid playerId, Item item);
     Task<Item> EquipSword(Guid playerId, Item item);
     Task<Item> EquipShield(Guid playerId, Item item);
+    Task<Item> RemoveHelm(Guid playerId);
+    Task<Item> RemoveChest(Guid playerId);
+    Task<Item> RemoveLegs(Guid playerId);
+    Task<Item> RemoveBoots(Guid playerId);
+    Task<Item> RemoveSword(Guid playerId);
+    Task<Item> RemoveShield(Guid playerId);
+
     Task<Player> GetByName(string name);
     Task<Player[]> PlayerItemLevel(int level);
     Task<Player[]> ItemsSize(int size);

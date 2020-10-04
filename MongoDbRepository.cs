@@ -13,6 +13,10 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using MongoDB.Driver;
 using MongoDB.Bson;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 public class MongoDbRepository : IRepository
 {
@@ -207,6 +211,10 @@ public class MongoDbRepository : IRepository
 
     public async Task<Item> EquipHelm(Guid playerId, Item item)
     {
+        if(item.itemType != itemType.Helm) 
+        {
+            throw new WrongItemTypeException(System.Net.HttpStatusCode.NotAcceptable, "That item is not a helm");            
+        }
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
         if (player.helm != null)
@@ -228,6 +236,10 @@ public class MongoDbRepository : IRepository
     }
     public async Task<Item> EquipChest(Guid playerId, Item item)
     {
+        if(item.itemType != itemType.Chest) 
+        {
+            throw new WrongItemTypeException(System.Net.HttpStatusCode.NotAcceptable, "That item is not a chest");            
+        }
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
         if (player.chest != null)
@@ -249,6 +261,10 @@ public class MongoDbRepository : IRepository
     }
     public async Task<Item> EquipLegs(Guid playerId, Item item)
     {
+        if(item.itemType != itemType.Legs) 
+        {
+            throw new WrongItemTypeException(System.Net.HttpStatusCode.NotAcceptable, "That item is not legs");            
+        }
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
         if (player.legs != null)
@@ -270,6 +286,10 @@ public class MongoDbRepository : IRepository
     }
     public async Task<Item> EquipBoots(Guid playerId, Item item)
     {
+        if(item.itemType != itemType.Boots) 
+        {
+            throw new WrongItemTypeException(System.Net.HttpStatusCode.NotAcceptable, "That item is not boots");            
+        }
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
         if (player.boots != null)
@@ -292,6 +312,10 @@ public class MongoDbRepository : IRepository
 
     public async Task<Item> EquipSword(Guid playerId, Item item)
     {
+        if(item.itemType != itemType.Sword) 
+        {
+            throw new WrongItemTypeException(System.Net.HttpStatusCode.NotAcceptable, "That item is not a sword");            
+        }
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
         if (player.sword != null)
@@ -313,6 +337,11 @@ public class MongoDbRepository : IRepository
     }
     public async Task<Item> EquipShield(Guid playerId, Item item)
     {
+
+        if(item.itemType != itemType.Shield) {
+            throw new WrongItemTypeException(System.Net.HttpStatusCode.NotAcceptable, "That item is not a shield");            
+        }
+
         var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
         Player player = await _playerCollection.Find(filter).FirstAsync();
         if (player.shield != null)
@@ -332,8 +361,6 @@ public class MongoDbRepository : IRepository
         }
         return item;
     }
-
-
     public async Task<Enemy> CreateEnemy(Enemy newenemy)
     {
         await _enemyCollection.InsertOneAsync(newenemy);
@@ -370,5 +397,71 @@ public class MongoDbRepository : IRepository
     public Task<Player> UpdateName(string name)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<Item> RemoveHelm(Guid playerId)
+    {
+        var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        Item item = player.helm;
+        player.Inventory.Add(item);
+        player.helm = null;
+        await _playerCollection.ReplaceOneAsync(filter, player);
+        return item;
+    }
+        
+    public async Task<Item> RemoveChest(Guid playerId)
+    {
+        var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        Item item = player.chest;
+        player.Inventory.Add(item);
+        player.chest = null;
+        await _playerCollection.ReplaceOneAsync(filter, player);
+        return item;
+    }
+
+    public async Task<Item> RemoveLegs(Guid playerId)
+    {
+        var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        Item item = player.legs;
+        player.Inventory.Add(item);
+        player.legs = null;
+        await _playerCollection.ReplaceOneAsync(filter, player);
+        return item;
+    }
+
+    public async Task<Item> RemoveBoots(Guid playerId)
+    {
+        var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        Item item = player.boots;
+        player.Inventory.Add(item);
+        player.boots = null;
+        await _playerCollection.ReplaceOneAsync(filter, player);
+        return item;
+    }
+
+    public async Task<Item> RemoveSword(Guid playerId)
+    {
+        var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        Item item = player.sword;
+        player.Inventory.Add(item);
+        player.sword = null;
+        await _playerCollection.ReplaceOneAsync(filter, player);
+        return item;
+    }
+
+    public async Task<Item> RemoveShield(Guid playerId)
+    {
+        var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
+        Player player = await _playerCollection.Find(filter).FirstAsync();
+        Item item = player.shield;
+        player.Inventory.Add(item);
+        player.shield = null;
+        await _playerCollection.ReplaceOneAsync(filter, player);
+        return item;
     }
 }

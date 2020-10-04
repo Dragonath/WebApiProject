@@ -158,11 +158,50 @@ public class ItemsController : ControllerBase
     {
         return await _irepository.EquipSword(playerId, item);
     }
-        [HttpPost]
+    [HttpPost]
     [Route("Shield/Equip")]
     public async Task<Item> EquipShield(Guid playerId, [FromBody] Item item)
     {
         return await _irepository.EquipShield(playerId, item);
+    }
+
+    [HttpPost]
+    [Route("Helm/Remove")]
+    public async Task<Item> RemoveHelm(Guid playerId) 
+    {
+        return await _irepository.RemoveHelm(playerId);
+    }
+
+    [HttpPost]
+    [Route("Chest/Remove")]
+    public async Task<Item> RemoveChest(Guid playerId) 
+    {
+        return await _irepository.RemoveChest(playerId);
+    }
+
+    [HttpPost]
+    [Route("Legs/Remove")]
+    public async Task<Item> RemoveLegs(Guid playerId) 
+    {
+        return await _irepository.RemoveLegs(playerId);
+    }
+    [HttpPost]
+    [Route("Boots/Remove")]
+    public async Task<Item> RemoveBoots(Guid playerId) 
+    {
+        return await _irepository.RemoveBoots(playerId);
+    }
+    [HttpPost]
+    [Route("Sword/Remove")]
+    public async Task<Item> RemoveSword(Guid playerId) 
+    {
+        return await _irepository.RemoveSword(playerId);
+    }
+    [HttpPost]
+    [Route("Shield/Remove")]
+    public async Task<Item> RemoveShield(Guid playerId) 
+    {
+        return await _irepository.RemoveShield(playerId);
     }
 
 }
