@@ -28,7 +28,8 @@ public class EnemyController : ControllerBase
         _irepository = irepository;
     }
 
-    [HttpPost] // {"Name" : "Orc", "Level" : 2}}
+    // {"Name" : "Orc", "Level" : 2}}
+    [HttpPost]
     [Route("Create")]
     public async Task<Item> Create([FromBody] NewEnemy enemy)
     {
