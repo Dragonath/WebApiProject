@@ -133,7 +133,8 @@ public class Item
 ```
 Item class saves items stats and adds itself to inventory of a player. Player has a level integer with model validation built in attribute [Range(int minimum, int maximum)]. Items have itemType variable that determines what kind of item it is. Type itemType uses enumeration to make it easier to read. 
 ```
-public enum itemType {
+public enum itemType
+{
     Helm,
     Chest,
     Legs,
