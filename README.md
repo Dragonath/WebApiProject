@@ -92,6 +92,21 @@ public class Enemy
 Enemy class is used to save enemy types. Single enemies do not have whole enemy classes for themselves in the database. Instead enemy in database is used to spawn multiple enemies with same attributes ingame.
 * #### Create([FromBody] NewEnemy enemy)
 	Takes NewEnemy from body and creates new enemy with name and level from NewEnemy and creates new unique Guid, Damage and Hp stat
+	```
+	[HttpPost]
+	[Route("Create")]
+	public async Task<Item> Create([FromBody] NewEnemy enemy)
+	{
+	    Enemy new_enemy = new Enemy();
+	    new_enemy.Id = Guid.NewGuid();
+	    new_enemy.Name = enemy.Name;
+	    new_enemy.Level = enemy.Level;
+	    new_enemy.Damage = enemy.Level * 3;
+	    new_enemy.Hp = enemy.Level * enemy.Level * 2;
+	    await _irepository.CreateEnemy(new_enemy);
+	    return null;
+	}
+	```
 * #### GetAll()
 	Returns all enemies saved in database
 * #### Get(Guid id)
