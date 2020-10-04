@@ -209,13 +209,12 @@ Item class saves items stats and adds itself to inventory of a player. Player ha
 * #### Delete(Guid playerId, Guid itemId)
 	Removes item with matching guid from the players inventory
 	
-	
-	
+* ### Equip	
 Following functions work similarly to each other. They equip specific item from players inventory to that specific matching equipment slot.
-* ##### EquipHelm(Guid playerId, [FromBody] Item item)
-* ##### EquipChest(Guid playerId, [FromBody] Item item)
-* ##### EquipLegs(Guid playerId, [FromBody] Item item)
-* ##### EquipBoots(Guid playerId, [FromBody] Item item)
-* ##### EquipSword(Guid playerId, [FromBody] Item item)
-* ##### EquipShield(Guid playerId, [FromBody] Item item)
+##### EquipHelm(Guid playerId, [FromBody] Item item)
+##### EquipChest(Guid playerId, [FromBody] Item item)
+##### EquipLegs(Guid playerId, [FromBody] Item item)
+##### EquipBoots(Guid playerId, [FromBody] Item item)
+##### EquipSword(Guid playerId, [FromBody] Item item)
+##### EquipShield(Guid playerId, [FromBody] Item item)
 
