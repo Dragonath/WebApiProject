@@ -158,7 +158,7 @@ public class ItemsController : ControllerBase
     {
         return await _irepository.EquipSword(playerId, item);
     }
-        [HttpPost]
+    [HttpPost]
     [Route("Shield/Equip")]
     public async Task<Item> EquipShield(Guid playerId, [FromBody] Item item)
     {
