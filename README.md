@@ -19,8 +19,6 @@ Project is created with:
 ## Databases
 We decided to use 2 databases in our implementation; one for players and one for enemies. Player database is considerably larger, because Player class has an Inventory which is a List of Item class objects, such as armors and weapons. Enemy database is used to save enemy types so it can be easily accessed and used by multiple enemies. 
 
-** INSERT DRAW.IO KAAVIO **
-
 ## Controllers
 This project uses 3 different controllers to create, modify and delete data from database. Each controller can do multiple things.
 * [Players](#players)
@@ -262,6 +260,9 @@ public enum itemType
 	{
 	    var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
 	    Player player = await _playerCollection.Find(filter).FirstAsync();
+	    if(player.helm == null) {
+		return null;
+	    }
 	    Item item = player.helm;
 	    player.Inventory.Add(item);
 	    player.helm = null;
