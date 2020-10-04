@@ -254,4 +254,25 @@ public enum itemType
 	* EquipBoots(Guid playerId, [FromBody] Item item)
 	* EquipSword(Guid playerId, [FromBody] Item item)
 	* EquipShield(Guid playerId, [FromBody] Item item)
+	
+* ### Remove	
+	Following functions work similarly to each other. They unequip specific item from specific matching equipment slot to players inventory.
+	```
+	public async Task<Item> RemoveHelm(Guid playerId)
+	{
+	    var filter = Builders<Player>.Filter.Eq(p => p.Id, playerId);
+	    Player player = await _playerCollection.Find(filter).FirstAsync();
+	    Item item = player.helm;
+	    player.Inventory.Add(item);
+	    player.helm = null;
+	    await _playerCollection.ReplaceOneAsync(filter, player);
+	    return item;
+	}
+	```
+	* RemoveHelm(Guid playerId)
+	* RemoveChest(Guid playerId)
+	* RemoveLegs(Guid playerId)
+	* RemoveBoots(Guid playerId)
+	* RemoveSword(Guid playerId)
+	* RemoveShield(Guid playerId)
 
